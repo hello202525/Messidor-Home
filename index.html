@@ -13,7 +13,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --ink: #222;
+      --ink: #000;
       --accent: #0b5c61; 
       --max: 800px;
       --top: 52px;
@@ -34,27 +34,28 @@
     }
 
     #hero {
-      width: 200px;
+      width: 180px;
       height: auto;
       object-fit: cover;
       display: block;
-      margin: 0 auto 24px;
+      margin: 0 auto 22px;
     }
 
     h1 {
       font-weight: 400;
-      font-size: clamp(38px, 6vw, 64px);
-      letter-spacing: 0.5px;
-      margin-bottom: 16px;
+      font-size: clamp(40px, 6vw, 60px);
+      letter-spacing: 0.2px;
+      margin-bottom: 6px;
     }
 
     nav {
       font-size: clamp(18px, 2.4vw, 22px);
-      margin-bottom: 28px;
+      margin-top: 6px;
+      margin-bottom: 30px;
     }
 
     nav a {
-      color: var(--accent);
+      color: var(--ink);
       text-decoration: none;
       padding: 0 8px;
     }
@@ -63,13 +64,13 @@
       width: 60%;
       margin: 8px auto 0;
       border: none;
-      border-top: 2px solid #333;
+      border-top: 1.5px solid #000;
     }
   </style>
 </head>
 <body>
   <main>
-    <img id="hero" src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Pieter_Bruegel_the_Elder_-_The_Harvesters_-_Google_Art_Project.jpg" alt="Pieter Bruegel the Elder — The Harvesters (1565)" />
+    <img id="hero" src="TheHarvesters.jpg" />
 
     <h1>Messidor</h1>
 
@@ -88,7 +89,7 @@
     icon.sizes = '32x32';
     document.head.appendChild(icon);
 
-    const src = 'https://upload.wikimedia.org/wikipedia/commons/7/7e/Pieter_Bruegel_the_Elder_-_The_Harvesters_-_Google_Art_Project.jpg';
+    const src = 'theharvester.jpg';
 
     const cvs = document.createElement('canvas');
     cvs.width = cvs.height = 32;

@@ -1,1 +1,126 @@
-Messidor
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Messidor</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink: #222;
+      --accent: #0b5c61; 
+      --max: 800px;
+      --top: 52px;
+    }
+
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--ink);
+      text-align: center;
+      line-height: 1.45;
+      background: #fff;
+    }
+
+    main {
+      max-width: var(--max);
+      margin: var(--top) auto 0;
+      padding: 0 16px;
+    }
+
+    #hero {
+      width: 200px;
+      height: auto;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto 24px;
+    }
+
+    h1 {
+      font-weight: 400;
+      font-size: clamp(38px, 6vw, 64px);
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+
+    nav {
+      font-size: clamp(18px, 2.4vw, 22px);
+      margin-bottom: 28px;
+    }
+
+    nav a {
+      color: var(--accent);
+      text-decoration: none;
+      padding: 0 8px;
+    }
+
+    .divider {
+      width: 60%;
+      margin: 8px auto 0;
+      border: none;
+      border-top: 2px solid #333;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <img id="hero" src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Pieter_Bruegel_the_Elder_-_The_Harvesters_-_Google_Art_Project.jpg" alt="Pieter Bruegel the Elder — The Harvesters (1565)" />
+
+    <h1>Messidor</h1>
+
+    <nav>
+      <a href="mailto:eric_li1@college.harvard.edu">Contact</a>
+    </nav>
+
+    <hr class="divider" />
+  </main>
+
+  <script>
+
+    const icon = document.createElement('link');
+    icon.rel   = 'icon';
+    icon.type  = 'image/png';
+    icon.sizes = '32x32';
+    document.head.appendChild(icon);
+
+    const src = 'https://upload.wikimedia.org/wikipedia/commons/7/7e/Pieter_Bruegel_the_Elder_-_The_Harvesters_-_Google_Art_Project.jpg';
+
+    const cvs = document.createElement('canvas');
+    cvs.width = cvs.height = 32;
+    const ctx = cvs.getContext('2d');
+
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      const w = img.naturalWidth || img.width;
+      const h = img.naturalHeight || img.height;
+
+      const scale = Math.max(32 / w, 32 / h);
+      const dw = w * scale;
+      const dh = h * scale;
+      const dx = (32 - dw) / 2;
+      const dy = (32 - dh) / 2;
+      ctx.clearRect(0, 0, 32, 32);
+      ctx.drawImage(img, dx, dy, dw, dh);
+      icon.href = cvs.toDataURL('image/png');
+
+      const icon16 = document.createElement('link');
+      icon16.rel = 'icon';
+      icon16.type = 'image/png';
+      icon16.sizes = '16x16';
+      const c16 = document.createElement('canvas');
+      c16.width = c16.height = 16;
+      const x16 = c16.getContext('2d');
+      x16.drawImage(cvs, 0, 0, 16, 16);
+      icon16.href = c16.toDataURL('image/png');
+      document.head.appendChild(icon16);
+    };
+    img.src = src;
+  </script>
+</body>
+</html>

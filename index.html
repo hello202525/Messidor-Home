@@ -78,7 +78,7 @@
       border-top: 1.5px solid #000;
     }
 
-    /* ---------- X splash ---------- */
+    /* X splash */
     html.x-splash-active { overflow: hidden; }
 
     #x-splash{
@@ -89,38 +89,42 @@
     }
     #x-splash.hide{ opacity: 0; pointer-events: none; }
 
-    #x-splash svg{ width: min(28vmin, 160px); height: auto; }
-    #x-splash line{
-      stroke: var(--ink);
-      stroke-width: 1; stroke-linecap: square;
-      stroke-dasharray: 120; stroke-dashoffset: 120;
-      animation: dash .7s ease forwards;
+    #x-splash .x-glyph{
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: min(28vmin, 160px);
+      line-height: 1;
+      color: var(--ink);
+      letter-spacing: 0;
+      transform: scale(.965);
+      filter: blur(.6px);
+      opacity: 0;
+      animation: typX .9s ease forwards;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
-    #x-splash line:last-child{ animation-delay: .15s; }
-
-    @keyframes dash { to { stroke-dashoffset: 0; } }
+    @keyframes typX{
+      0%   { opacity:0; transform:scale(.94); filter:blur(1.2px); letter-spacing:.06em; }
+      60%  { opacity:1; transform:scale(1);   filter:blur(.2px);  letter-spacing:.01em; }
+      100% { opacity:1; transform:scale(1);   filter:blur(0);      letter-spacing:0; }
+    }
 
     @media (prefers-reduced-motion: reduce){
-      #x-splash line{ animation: none; stroke-dashoffset: 0; }
       #x-splash{ transition: none; }
+      #x-splash .x-glyph{ animation: none; opacity: 1; filter: none; transform: none; }
     }
-    /* ---------- end X splash ---------- */
   </style>
 </head>
 <body>
 
-  <!-- X splash (appears immediately, removed on fonts-ready or after 2s) -->
+  <!-- X splash -->
   <script>
   (function(){
     document.documentElement.classList.add('x-splash-active');
 
     var s = document.createElement('div');
     s.id = 'x-splash';
-    s.innerHTML =
-      '<svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">'
-      + '<line x1="15" y1="15" x2="85" y2="85"></line>'
-      + '<line x1="85" y1="15" x2="15" y2="85"></line>'
-      + '</svg>';
+    s.innerHTML = '<div class="x-glyph" aria-hidden="true">X</div>';
     document.body.prepend(s);
 
     function hide(){
@@ -129,6 +133,7 @@
       s.addEventListener('transitionend', function(){ s.remove(); }, { once:true });
     }
 
+    // Hide on fonts ready or at 2000ms, whichever comes first
     var t = setTimeout(hide, 2000);
     if (document.fonts && document.fonts.ready){
       document.fonts.ready.then(function(){ clearTimeout(t); hide(); });

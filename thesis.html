@@ -1,69 +1,83 @@
-<style>
-  .thesis-entry { max-width: 680px; margin: 28px auto 40px; text-align: left; }
-  .thesis-entry .thesis-title { font-weight: 700; font-size: clamp(20px, 1.9rem, 26px); letter-spacing: 0.2px; }
-  .thesis-entry p, .thesis-entry li { font-size: clamp(14px, 1rem, 17px); line-height: 1.6; margin: 12px 0; }
-  .thesis-entry ul { padding-left: 1.2em; margin: 10px 0; }
-</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Entry #1 | Messidor</title>
 
-<article class="thesis-entry" id="entry-1">
-  <h2 class="thesis-title">Entry #1</h2>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
 
-  <p>A modern Great Schism is happening where present major business organizations will have to become media apparatuses.</p>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Cormorant Garamond', serif; color: #000; background: #fff; line-height: 1.5; }
+    main { max-width: 800px; padding: 0 16px; margin: 48px auto; }
+    pre { white-space: pre-wrap; font: inherit; }
+  </style>
+</head>
+<body>
+  <main>
+<pre>Entry #1
 
-  <p>As technical moats between products continue to diminish, the far more pertinent skill will be distribution and capturing mindshare.</p>
+A modern Great Schism is happening where present major business organizations will have to become media apparatuses.
 
-  <p>It is imperative to have a controlling stake in this -- this means playing a role in architecting this future.</p>
+As technical moats between products continue to diminish, the far more pertinent skill will be distribution and capturing mindshare. 
 
-  <p>For example, a16z has tried to build out media:</p>
+It is imperative to have a controlling stake in this -- this means playing a role in architecting this future. 
 
-  <p><strong>Attempts Include:</strong></p>
-  <ul>
-    <li><strong>Investments:</strong> Clubhouse + Buzzfeed in investments (both were done when the passion was </li>
-    <li><strong>In House:</strong> The Sunsetted Future (their in-house content studio, never gained true relevance)</li>
-    <li><strong>High Profile Personality Investments:</strong> (defined by a16z hiring someone who has built profile apriori to a16z); Daniel Penny, Adam Neumann, Roy Lee</li>
-  </ul>
+For example, a16z has tried to build out media:
+Attempts Include: 
+	-> Investments: Clubhouse + Buzzfeed in investments (both were done when the passion was 
+	-> In House: The Sunsetted Future (their in-house content studio, never gained true relevance)
+	-> High Profile Personality Investments: (defined by a16z hiring someone who has built profile apriori to a16z); Daniel Penny, Adam Neumann, Roy Lee  
 
-  <p>These have achieved medium to moderate success. On the other hand, Thiel-world figures (Eric Weinstein, Peter Thiel, Blake Masters, Jesse Michaels) have all built and scaled media presence by focusing on topics that people actually care -- politics, heretical science, etc,</p>
+These have achieved medium to moderate success. On the other hand, Thiel-world figures (Eric Weinstein, Peter Thiel, Blake Masters, Jesse Michaels) have all built and scaled media presence by focusing on topics that people actually care -- politics, heretical science, etc,
 
-  <p>This means opportunity.</p>
+This means opportunity. 
 
-  <p>This is where the Messidor Fund enters.</p>
+This is where the Messidor Fund enters. 
 
-  <p>One unified, singular attempt -- through commerce culture, and content -- at capturing mindshare amongst the emerging pools of Elite Human Capital.</p>
-</article>
+One unified, singular attempt -- through commerce culture, and content -- at capturing mindshare amongst the emerging pools of Elite Human Capital. 
+</pre>
+  </main>
 
-<script>
-  document.title = 'Our Thesis';
-</script>
-
-<!-- Favicon (added exactly as provided) -->
-<script>
-  const icon = document.createElement('link');
-  icon.rel = 'icon';
-  icon.type = 'image/png';
-  icon.sizes = '32x32';
-  document.head.appendChild(icon);
-
-  const src = 'TheHarvesters.jpg';
-  const cvs = document.createElement('canvas'); cvs.width = cvs.height = 32;
-  const ctx = cvs.getContext('2d');
-  const img = new Image(); img.crossOrigin = 'anonymous';
-  img.onload = () => {
-    const w = img.naturalWidth || img.width, h = img.naturalHeight || img.height;
-    const scale = Math.max(32 / w, 32 / h);
-    const dw = w * scale, dh = h * scale;
-    const dx = (32 - dw) / 2, dy = (32 - dh) / 2;
-    ctx.clearRect(0,0,32,32); ctx.drawImage(img, dx, dy, dw, dh);
-    icon.href = cvs.toDataURL('image/png');
+  <script>
+    const icon32 = document.createElement('link');
+    icon32.rel = 'icon';
+    icon32.type = 'image/png';
+    icon32.sizes = '32x32';
+    document.head.appendChild(icon32);
 
     const icon16 = document.createElement('link');
     icon16.rel = 'icon';
     icon16.type = 'image/png';
     icon16.sizes = '16x16';
-    const c16 = document.createElement('canvas'); c16.width = c16.height = 16;
-    const x16 = c16.getContext('2d'); x16.drawImage(cvs, 0, 0, 16, 16);
-    icon16.href = c16.toDataURL('image/png');
     document.head.appendChild(icon16);
-  };
-  img.src = src;
-</script>
+
+    const src = 'TheHarvesters.jpg';
+    const base = document.createElement('canvas');
+    base.width = base.height = 32;
+    const bctx = base.getContext('2d');
+    const img = new Image();
+
+    img.onload = () => {
+      const w = img.naturalWidth || img.width, h = img.naturalHeight || img.height;
+      const s = Math.max(32 / w, 32 / h);
+      const dw = w * s, dh = h * s;
+      const dx = (32 - dw) / 2, dy = (32 - dh) / 2;
+      bctx.clearRect(0, 0, 32, 32);
+      bctx.drawImage(img, dx, dy, dw, dh);
+      icon32.href = base.toDataURL('image/png');
+
+      const c16 = document.createElement('canvas');
+      c16.width = c16.height = 16;
+      const c16ctx = c16.getContext('2d');
+      c16ctx.drawImage(base, 0, 0, 16, 16);
+      icon16.href = c16.toDataURL('image/png');
+    };
+
+    img.src = src;
+  </script>
+</body>
+</html>

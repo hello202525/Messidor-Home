@@ -14,9 +14,10 @@
 
     .lead { font-weight: 700; font-size: 1.6em; line-height: 1.14; display: block; margin: 0 0 var(--entry-gap); }
     .sublead { display: block; font-style: normal; text-align: left; line-height: 1.28; margin: 0 0 12px; }
-    .lead + .sublead { margin-top: var(--entry-gap); }
 
-    .section-start { margin-top: var(--section-gap); }
+    /* spacing tweaks */
+    .lead + .sublead { margin-top: 1em; }                  /* was var(--entry-gap) */
+    .section-start { margin-top: calc(var(--section-gap) + 1em); } /* extra break before Entry #2 */
 
     figure { max-width: 800px; margin: 0; padding: 0; }
     figure img { display: block; max-width: 100%; height: auto; margin: 0; }
@@ -45,11 +46,7 @@ This is where the Messidor Fund enters.
 One unified, singular attempt -- through commerce culture, and content -- at capturing mindshare amongst the emerging pools of Elite Human Capital.
 </pre>
 
-.section-start { margin-top: calc(var(--section-gap) + 1em); }
-
 <p class="lead section-start">Entry #2</p>
-.lead + .sublead { margin-top: 1em; } /* was var(--entry-gap) */
-
 <p class="sublead">What Podcasts of the Future Look Like:</p>
 <figure>
   <img src="TheFuture.jpg" alt="The Future">

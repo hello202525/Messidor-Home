@@ -19,61 +19,53 @@
     h1 { font-weight:400; font-size:clamp(40px,6vw,60px); letter-spacing:.2px; margin-bottom:6px; }
     nav { font-size:clamp(10px,2.4vw,22px); margin:15px 0 20px; }
     nav a { color:var(--ink); text-decoration:none; padding:0 8px; }
-    .divider { width:60%; margin:8px auto 0; border:none; border-top:1.5px solid #000; opacity:0; transition:opacity .28s ease; }
-    .site-ready .divider { opacity:1; }
+    .divider { width:60%; margin:8px auto 0; border:none; border-top:1.5px solid #000; transform-origin:50% 50%; }
+
     #tagline { position:fixed; left:50%; bottom:calc(24px + env(safe-area-inset-bottom)); transform:translateX(-50%); font-style:italic; font-size:clamp(9px,2.1vw,20px); color:var(--ink); pointer-events:none; }
 
-    html.x-splash-active { overflow:hidden; }
-    #x-splash { position:fixed; inset:0; z-index:9999; background:#fff; display:grid; place-items:center; opacity:1; transition:opacity .3s ease; }
-    #x-splash.hide { opacity:0; pointer-events:none; }
-    #x-splash svg { width:min(26vmin,160px); height:auto; }
-    #x-splash path { fill:none; stroke:var(--ink); stroke-width:var(--xw,1.5px); stroke-linecap:round; stroke-linejoin:round; stroke-opacity:.16; filter:blur(.08px); stroke-dasharray:var(--len,1); stroke-dashoffset:var(--len,1); animation:draw .72s ease forwards, press .72s ease forwards; }
-    #x-splash .p2 { animation-delay:.12s, .12s; }
-    @keyframes draw { to { stroke-dashoffset:0; } }
-    @keyframes press { 0%{ stroke-width:calc(var(--xw,.001px)*.85); } 60%{ stroke-width:var(--xw,1.5px); } 100%{ stroke-width:var(--xw,1.5px); } }
-    @media (prefers-reduced-motion: reduce){ #x-splash { transition:none; } #x-splash path { animation:none; stroke-dashoffset:0; } }
+    html.intro-active { overflow:hidden; }
+    #intro { position:fixed; inset:0; background:#fff; z-index:9999; opacity:1; transition:opacity .32s ease; }
+    #intro.hide { opacity:0; pointer-events:none; }
+
+    .ready #hero { animation:fadeUp .45s ease both; }
+    .ready h1 { animation:fadeUp .5s ease .05s both; }
+    .ready nav { animation:fadeUp .5s ease .1s both; }
+    .ready .divider { animation:lineIn .55s ease .2s both; }
+
+    @keyframes fadeUp { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+    @keyframes lineIn { from { opacity:0; transform:scaleX(.85); } to { opacity:1; transform:scaleX(1); } }
+
+    @media (prefers-reduced-motion: reduce){
+      #intro { transition:none; }
+      .ready #hero, .ready h1, .ready nav, .ready .divider { animation:none; }
+    }
   </style>
 </head>
 <body>
 
+  <div id="intro" aria-hidden="true"></div>
+
   <script>
   (function(){
-    document.documentElement.classList.add('x-splash-active');
-    const s = document.createElement('div');
-    s.id = 'x-splash';
-    s.innerHTML =
-      '<svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">'
-    + '  <g transform="rotate(8 50 50)">'
-    + '    <path class="p1" d="M10 84 C 28 72, 44 58, 54 48 C 66 36, 80 24, 90 18" />'
-    + '    <path class="p2" d="M90 86 C 74 74, 62 62, 52 44 C 43 28, 30 20, 12 16" />'
-    + '  </g>'
-    + '</svg>';
-    document.body.prepend(s);
+    document.documentElement.classList.add('intro-active');
+    const intro = document.getElementById('intro');
 
-    const hr = document.querySelector('.divider');
-    const w = parseFloat(getComputedStyle(hr).borderTopWidth) || 1.5;
-    s.querySelector('svg').style.setProperty('--xw', w + 'px');
-
-    const p1 = s.querySelector('.p1');
-    const p2 = s.querySelector('.p2');
-    [p1,p2].forEach(p=>{ const L = p.getTotalLength(); p.style.setProperty('--len', L); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
-
-    function hide(){
-      s.classList.add('hide');
-      document.documentElement.classList.remove('x-splash-active');
-      document.documentElement.classList.add('site-ready');
-      s.addEventListener('transitionend', ()=>s.remove(), {once:true});
+    function finish(){
+      document.documentElement.classList.add('ready');
+      intro.classList.add('hide');
+      document.documentElement.classList.remove('intro-active');
+      intro.addEventListener('transitionend', ()=>intro.remove(), {once:true});
     }
 
-    const minMs = 1000, maxMs = 2000;
+    const minMs = 500, maxMs = 1600;
     let minElapsed = false, ready = false;
-    setTimeout(()=>{ minElapsed = true; if(ready) hide(); }, minMs);
-    setTimeout(hide, maxMs);
+    setTimeout(()=>{ minElapsed = true; if(ready) finish(); }, minMs);
+    setTimeout(finish, maxMs);
 
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(()=>{ ready = true; if(minElapsed) hide(); });
+    if (document.fonts && document.fonts.ready){
+      document.fonts.ready.then(()=>{ ready = true; if(minElapsed) finish(); });
     } else {
-      window.addEventListener('load', ()=>{ ready = true; if(minElapsed) hide(); }, {once:true});
+      window.addEventListener('load', ()=>{ ready = true; if(minElapsed) finish(); }, {once:true});
     }
   })();
   </script>

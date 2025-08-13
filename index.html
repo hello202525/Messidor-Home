@@ -17,8 +17,8 @@
     main { max-width:var(--max); margin:var(--top) auto 0; padding:0 16px; }
     #hero { width:200px; height:auto; object-fit:cover; display:block; margin:0 auto 22px; }
     h1 { font-weight:400; font-size:clamp(40px,6vw,60px); letter-spacing:.2px; margin-bottom:6px; }
-    nav { font-size:clamp(10px,2.4vw,22px); margin:15px 0 20px; }
-    nav a { color:var(--ink); text-decoration:none; padding:0 8px; }
+    nav { display:inline-flex; align-items:center; justify-content:center; gap:clamp(16px,3vw,28px); font-size:clamp(10px,2.4vw,22px); margin:15px 0 20px; white-space:nowrap; }
+    nav a { color:var(--ink); text-decoration:none; padding:2px 4px; }
     .divider { width:60%; margin:8px auto 0; border:none; border-top:1.5px solid #000; transform-origin:50% 50%; }
 
     #tagline { position:fixed; left:50%; bottom:calc(24px + env(safe-area-inset-bottom)); transform:translateX(-50%); font-style:italic; font-size:clamp(9px,2.1vw,20px); color:var(--ink); pointer-events:none; }
@@ -73,7 +73,10 @@
   <main>
     <img id="hero" src="TheHarvesters.jpg" alt="The Harvesters" />
     <h1>Messidor</h1>
-    <nav><a href="mailto:info@messidorfund.com">Contact</a></nav>
+    <nav>
+      <a href="mailto:info@messidorfund.com">Contact</a>
+      <a href="these.html">Theses</a>
+    </nav>
     <hr class="divider" />
   </main>
 

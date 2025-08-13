@@ -31,30 +31,23 @@
     html.x-splash-active { overflow:hidden; }
     #x-splash {
       position:fixed; inset:0; z-index:9999; background:#fff;
-      display:grid; place-items:center; opacity:1; transition:opacity .28s ease;
+      display:grid; place-items:center; opacity:1; transition:opacity .3s ease;
     }
     #x-splash.hide { opacity:0; pointer-events:none; }
-    #x-splash .glyph {
-      font-family:'Cormorant Garamond', serif;
-      font-weight:300;
-      font-size:clamp(44px,7.5vmin,110px);
-      line-height:1;
-      color:var(--ink);
-      letter-spacing:0;
-      opacity:0;
-      transform:scale(.985);
-      animation:glyphIn 900ms ease forwards;
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
+    #x-splash svg { width:min(26vmin,160px); height:auto; }
+    #x-splash path {
+      fill:none; stroke:var(--ink); stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round;
+      stroke-dasharray: var(--len, 1); stroke-dashoffset: var(--len, 1);
+      opacity:.9;
     }
-    @keyframes glyphIn {
-      0%   { opacity:0;   transform:scale(.98); }
-      60%  { opacity:.18; transform:scale(1); }
-      100% { opacity:.14; transform:scale(1); }
-    }
+    #x-splash .p1.draw { animation:draw1 700ms ease forwards; }
+    #x-splash .p2.draw { animation:draw2 720ms ease forwards 120ms; }
+    @keyframes draw1 { to { stroke-dashoffset:0; } }
+    @keyframes draw2 { to { stroke-dashoffset:0; } }
+
     @media (prefers-reduced-motion: reduce){
       #x-splash { transition:none; }
-      #x-splash .glyph { animation:none; opacity:.14; transform:none; }
+      #x-splash path { animation:none; stroke-dashoffset:0; }
     }
   </style>
 </head>
@@ -65,27 +58,40 @@
     document.documentElement.classList.add('x-splash-active');
     const s = document.createElement('div');
     s.id = 'x-splash';
-    s.innerHTML = '<div class="glyph" aria-hidden="true">X</div>';
+    s.innerHTML =
+      '<svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">'
+    + '  <g transform="rotate(10 50 50)">'
+    + '    <path class="p1" d="M8 88 C 28 78, 44 62, 52 50 C 61 36, 76 24, 92 12" />'
+    + '    <path class="p2" d="M92 86 C 74 72, 62 60, 54 44 C 46 28, 34 18, 10 14" />'
+    + '  </g>'
+    + '</svg>';
     document.body.prepend(s);
 
-    let done = false;
+    const p1 = s.querySelector('.p1');
+    const p2 = s.querySelector('.p2');
+    [p1,p2].forEach(p=>{
+      const L = p.getTotalLength();
+      p.style.setProperty('--len', L);
+      p.style.strokeDasharray = L;
+      p.style.strokeDashoffset = L;
+    });
+    requestAnimationFrame(()=>{ p1.classList.add('draw'); p2.classList.add('draw'); });
+
     function hide(){
-      if(done) return; done = true;
       s.classList.add('hide');
       document.documentElement.classList.remove('x-splash-active');
       s.addEventListener('transitionend', ()=>s.remove(), {once:true});
     }
 
-    const minMs = 900, maxMs = 2000;
-    let minElapsed = false, fontsReady = false;
-
-    setTimeout(()=>{ minElapsed = true; if(fontsReady) hide(); }, minMs);
+    const minMs = 1200, maxMs = 2200;
+    let minElapsed = false, ready = false;
+    setTimeout(()=>{ minElapsed = true; if(ready) hide(); }, minMs);
     setTimeout(hide, maxMs);
 
     if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(()=>{ fontsReady = true; if(minElapsed) hide(); });
+      document.fonts.ready.then(()=>{ ready = true; if(minElapsed) hide(); });
     } else {
-      window.addEventListener('load', ()=>{ fontsReady = true; if(minElapsed) hide(); }, {once:true});
+      window.addEventListener('load', ()=>{ ready = true; if(minElapsed) hide(); }, {once:true});
     }
   })();
   </script>

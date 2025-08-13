@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Our Thesis</title>
+  <script>
+    document.documentElement.classList.add('has-js','is-loading');
+  </script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root { --entry-gap: 6px; --section-gap: 28px; }
@@ -15,15 +18,39 @@
     .lead { font-weight: 700; font-size: 1.6em; line-height: 1.14; display: block; margin: 0 0 var(--entry-gap); }
     .sublead { display: block; font-style: normal; text-align: left; line-height: 1.28; margin: 0 0 12px; }
 
-    /* spacing tweaks */
     .lead + .sublead {
-      /* match the extra "newline" after Entry #1 inside <pre> */
       margin-top: calc(var(--entry-gap) + 1.28em);
     }
-    .section-start { margin-top: calc(var(--section-gap) + 1em); } /* extra break before Entry #2 */
+    .section-start { margin-top: calc(var(--section-gap) + 1em); }
 
     figure { max-width: 800px; margin: 0; padding: 0; }
     figure img { display: block; max-width: 100%; height: auto; margin: 0; }
+
+    .has-js body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: #fff;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .55s ease;
+      z-index: 9999;
+    }
+    .has-js.is-loading body::before { opacity: 1; }
+    .has-js.is-ready body::before  { opacity: 0; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .has-js.is-ready main {
+      animation: fadeUp .6s cubic-bezier(.2,.6,.2,1) .06s both;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .has-js body::before { transition: none; }
+      .has-js.is-ready main { animation: none; }
+    }
   </style>
 </head>
 <body>
@@ -37,7 +64,7 @@ It is imperative to have a controlling stake in this -- this means playing a rol
 
 For example, a16z has tried to build out media:
 -> Investments: Clubhouse + Buzzfeed (both were invested in at hype-cycle peak) 
--> In House: The Sunsetted Future (their in-house content studio, never gained true relevance)
+-> In House: (The Sunsetted) Future (their in-house content studio, never gained true relevance)
 -> High Profile Personality Investments: (defined by a16z hiring someone who has built profile apriori to a16z); Daniel Penny, Adam Neumann, Roy Lee  
 
 These have achieved medium to moderate success. On the other hand, Thiel-adjacent figures (Eric Weinstein, Peter Thiel, Blake Masters, Jesse Michaels) have all built and scaled media presence by focusing on topics that people actually care about -- politics, heretical science, etc.
@@ -55,6 +82,14 @@ One unified, singular attempt -- through commerce culture, and content -- at cap
   <img src="TheFuture.jpg" alt="The Future">
 </figure>
   </main>
+
+  <script>
+    window.addEventListener('load', () => {
+      const root = document.documentElement;
+      root.classList.remove('is-loading');
+      root.classList.add('is-ready');
+    });
+  </script>
 
   <script>
     const icon32 = document.createElement('link');

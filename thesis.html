@@ -12,31 +12,35 @@
       color: #000;
       background: #fff;
       font-size: 20px;
-      line-height: 1.32; /* tighter default line-height */
+      line-height: 1.32;
     }
     main { max-width: 800px; padding: 0 16px; margin: 40px auto; }
 
-    /* Tighten spacing inside the preformatted block */
     pre {
       white-space: pre-wrap;
       font: inherit;
-      line-height: 1.28;  /* was ~1.6 -> much tighter */
+      line-height: 1.28;
       margin: 0;
     }
 
-    /* Headings for entries (works for both <strong class="lead"> and <p class="lead">) */
     .lead {
       font-weight: 700;
-      font-size: 1.6em;   /* larger entry titles */
-      line-height: 1.14;  /* compact title line-height */
+      font-size: 1.6em;
+      line-height: 1.14;
       display: block;
       margin: 0 0 6px;
     }
 
-    /* Image section spacing a bit tighter */
-    figure { max-width: 800px; margin: 8px auto 36px; padding: 0 16px; }
+    .sublead {
+      display: block;
+      font-style: italic;
+      text-align: center;
+      line-height: 1.28;
+      margin: 6px 0 12px; /* 6px matches the gap after Entry #1’s title */
+    }
+
+    figure { max-width: 800px; margin: 0 auto 36px; padding: 0 16px; }
     figure img { display: block; max-width: 100%; height: auto; margin: 0 auto; }
-    figure figcaption { text-align: center; margin-top: 4px; font-style: italic; line-height: 1.2; }
   </style>
 </head>
 <body>
@@ -49,13 +53,11 @@ As technical moats between products continue to diminish, the far more pertinent
 It is imperative to have a controlling stake in this -- this means playing a role in architecting this future. 
 
 For example, a16z has tried to build out media:
-
-Attempts Include: 
--> Investments: Clubhouse + Buzzfeed in investments (both were done when the passion was 
+-> Investments: Clubhouse + Buzzfeed in investments (both were done at hype-cycle peak) 
 -> In House: The Sunsetted Future (their in-house content studio, never gained true relevance)
 -> High Profile Personality Investments: (defined by a16z hiring someone who has built profile apriori to a16z); Daniel Penny, Adam Neumann, Roy Lee  
 
-These have achieved medium to moderate success. On the other hand, Thiel-world figures (Eric Weinstein, Peter Thiel, Blake Masters, Jesse Michaels) have all built and scaled media presence by focusing on topics that people actually care -- politics, heretical science, etc,
+These have achieved medium to moderate success. On the other hand, Thiel-world figures (Eric Weinstein, Peter Thiel, Blake Masters, Jesse Michaels) have all built and scaled media presence by focusing on topics that people actually care -- politics, heretical science, etc.
 
 This means opportunity. 
 
@@ -67,10 +69,9 @@ This is where the Messidor Fund enters.
 <br><br>
 
 <p class="lead">Entry #2</p>
-
+<p class="sublead">What Podcasts of the Future Look Like:</p>
 <figure>
   <img src="TheFuture.jpg" alt="The Future">
-  <figcaption><em>What Podcasts of the Future Look Like</em></figcaption>
 </figure>
   </main>
 

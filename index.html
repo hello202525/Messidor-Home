@@ -13,19 +13,19 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     #tagline {
-    position: fixed;
-    left: 50%;
-    bottom: 14px;
-    transform: translateX(-50%);
-    font-style: italic;
-    font-size: clamp(9px, 2.1vw, 20px);  
-    color: var(--ink);
-    pointer-events: none;
-      bottom: calc(24px + env(safe-area-inset-bottom)); 
+      position: fixed;
+      left: 50%;
+      bottom: calc(24px + env(safe-area-inset-bottom));
+      transform: translateX(-50%);
+      font-style: italic;
+      font-size: clamp(9px, 2.1vw, 20px);
+      color: var(--ink);
+      pointer-events: none;
     }
+
     :root {
       --ink: #000;
-      --accent: #0b5c61; 
+      --accent: #0b5c61;
       --max: 800px;
       --top: 52px;
     }
@@ -77,25 +77,79 @@
       border: none;
       border-top: 1.5px solid #000;
     }
+
+    /* ---------- X splash ---------- */
+    html.x-splash-active { overflow: hidden; }
+
+    #x-splash{
+      position: fixed; inset: 0; z-index: 9999;
+      background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 1; transition: opacity .35s ease;
+    }
+    #x-splash.hide{ opacity: 0; pointer-events: none; }
+
+    #x-splash svg{ width: min(28vmin, 160px); height: auto; }
+    #x-splash line{
+      stroke: var(--ink);
+      stroke-width: 1; stroke-linecap: square;
+      stroke-dasharray: 120; stroke-dashoffset: 120;
+      animation: dash .7s ease forwards;
+    }
+    #x-splash line:last-child{ animation-delay: .15s; }
+
+    @keyframes dash { to { stroke-dashoffset: 0; } }
+
+    @media (prefers-reduced-motion: reduce){
+      #x-splash line{ animation: none; stroke-dashoffset: 0; }
+      #x-splash{ transition: none; }
+    }
+    /* ---------- end X splash ---------- */
   </style>
 </head>
 <body>
+
+  <!-- X splash (appears immediately, removed on fonts-ready or after 2s) -->
+  <script>
+  (function(){
+    document.documentElement.classList.add('x-splash-active');
+
+    var s = document.createElement('div');
+    s.id = 'x-splash';
+    s.innerHTML =
+      '<svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">'
+      + '<line x1="15" y1="15" x2="85" y2="85"></line>'
+      + '<line x1="85" y1="15" x2="15" y2="85"></line>'
+      + '</svg>';
+    document.body.prepend(s);
+
+    function hide(){
+      s.classList.add('hide');
+      document.documentElement.classList.remove('x-splash-active');
+      s.addEventListener('transitionend', function(){ s.remove(); }, { once:true });
+    }
+
+    var t = setTimeout(hide, 2000);
+    if (document.fonts && document.fonts.ready){
+      document.fonts.ready.then(function(){ clearTimeout(t); hide(); });
+    } else {
+      window.addEventListener('load', function(){ clearTimeout(t); hide(); }, { once:true });
+    }
+  })();
+  </script>
+
   <main>
-    <img id="hero" src="TheHarvesters.jpg" />
-
+    <img id="hero" src="TheHarvesters.jpg" alt="The Harvesters" />
     <h1>Messidor</h1>
-
     <nav>
       <a href="mailto:eric_li1@college.harvard.edu">Contact</a>
     </nav>
-
     <hr class="divider" />
   </main>
 
-    <footer id="tagline">"Cultivating attention."</footer>
+  <footer id="tagline">"Cultivating attention."</footer>
 
   <script>
-
     const icon = document.createElement('link');
     icon.rel   = 'icon';
     icon.type  = 'image/png';

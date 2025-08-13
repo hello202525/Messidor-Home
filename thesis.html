@@ -5,26 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Our Thesis</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
-
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Cormorant Garamond', serif; color: #000; background: #fff; font-size: 20px; }
-    main { max-width: 800px; padding: 0 16px; margin: 48px auto; }
-    pre { white-space: pre-wrap; font: inherit; line-height: 1.6; }
-    .lead { font-weight: 600; font-size: 1.15em; }
+    body {
+      font-family: "Times New Roman", Times, serif;
+      color: #000;
+      background: #fff;
+      font-size: 20px;
+      line-height: 1.32; /* tighter default line-height */
+    }
+    main { max-width: 800px; padding: 0 16px; margin: 40px auto; }
 
-    figure { max-width: 800px; margin: 0 auto 60px; padding: 0 16px; }
+    /* Tighten spacing inside the preformatted block */
+    pre {
+      white-space: pre-wrap;
+      font: inherit;
+      line-height: 1.28;  /* was ~1.6 -> much tighter */
+      margin: 0;
+    }
+
+    /* Headings for entries (works for both <strong class="lead"> and <p class="lead">) */
+    .lead {
+      font-weight: 700;
+      font-size: 1.6em;   /* larger entry titles */
+      line-height: 1.14;  /* compact title line-height */
+      display: block;
+      margin: 0 0 6px;
+    }
+
+    /* Image section spacing a bit tighter */
+    figure { max-width: 800px; margin: 8px auto 36px; padding: 0 16px; }
     figure img { display: block; max-width: 100%; height: auto; margin: 0 auto; }
-    figure figcaption { text-align: center; margin-top: 8px; font-style: italic; }
+    figure figcaption { text-align: center; margin-top: 4px; font-style: italic; line-height: 1.2; }
   </style>
 </head>
 <body>
   <main>
 <pre><strong class="lead">Entry #1</strong>
-
 A modern Great Schism is happening where present major business organizations will have to become media apparatuses.
 
 As technical moats between products continue to diminish, the far more pertinent skill will be distribution and capturing mindshare. 
@@ -48,7 +65,9 @@ This is where the Messidor Fund enters.
 <strong>One unified, singular attempt -- through commerce culture, and content -- at capturing mindshare amongst the emerging pools of Elite Human Capital.</strong> 
 </pre>
 
-<br><br><br>
+<br><br>
+
+<p class="lead">Entry #2</p>
 
 <figure>
   <img src="TheFuture.jpg" alt="The Future">

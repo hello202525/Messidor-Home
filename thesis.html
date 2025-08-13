@@ -16,7 +16,10 @@
     .sublead { display: block; font-style: normal; text-align: left; line-height: 1.28; margin: 0 0 12px; }
 
     /* spacing tweaks */
-    .lead + .sublead { margin-top: 1em; }                  /* was var(--entry-gap) */
+    .lead + .sublead {
+      /* match the extra "newline" after Entry #1 inside <pre> */
+      margin-top: calc(var(--entry-gap) + 1.28em);
+    }
     .section-start { margin-top: calc(var(--section-gap) + 1em); } /* extra break before Entry #2 */
 
     figure { max-width: 800px; margin: 0; padding: 0; }

@@ -6,18 +6,14 @@
   <title>Our Thesis</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: "Times New Roman", Times, serif;
-      color: #000;
-      background: #fff;
-      font-size: 20px;
-      line-height: 1.32;
-    }
+    :root { --entry-gap: 6px; }
+    body { font-family: "Times New Roman", Times, serif; color: #000; background: #fff; font-size: 20px; line-height: 1.32; }
     main { max-width: 800px; padding: 0 16px; margin: 40px auto; }
     pre { white-space: pre-wrap; font: inherit; line-height: 1.28; margin: 0; }
-    .lead { font-weight: 700; font-size: 1.6em; line-height: 1.14; display: block; margin: 0 0 6px; }
+    .lead { font-weight: 700; font-size: 1.6em; line-height: 1.14; display: block; margin: 0 0 var(--entry-gap); }
     .sublead { display: block; font-style: normal; text-align: left; line-height: 1.28; margin: 0 0 12px; }
-    figure { max-width: 800px; margin: 0 auto 36px; padding: 0; }
+    .lead + .sublead { margin-top: 0 !important; }
+    figure { max-width: 800px; margin: 0; padding: 0; }
     figure img { display: block; max-width: 100%; height: auto; margin: 0; }
   </style>
 </head>
@@ -43,8 +39,6 @@ This is where the Messidor Fund enters.
 
 One unified, singular attempt -- through commerce culture, and content -- at capturing mindshare amongst the emerging pools of Elite Human Capital.
 </pre>
-
-<br><br>
 
 <p class="lead">Entry #2</p>
 <p class="sublead">What Podcasts of the Future Look Like:</p>

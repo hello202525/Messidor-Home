@@ -6,13 +6,18 @@
   <title>Our Thesis</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root { --entry-gap: 6px; }
+    :root { --entry-gap: 6px; --section-gap: 28px; }
     body { font-family: "Times New Roman", Times, serif; color: #000; background: #fff; font-size: 20px; line-height: 1.32; }
     main { max-width: 800px; padding: 0 16px; margin: 40px auto; }
+
     pre { white-space: pre-wrap; font: inherit; line-height: 1.28; margin: 0; }
+
     .lead { font-weight: 700; font-size: 1.6em; line-height: 1.14; display: block; margin: 0 0 var(--entry-gap); }
     .sublead { display: block; font-style: normal; text-align: left; line-height: 1.28; margin: 0 0 12px; }
-    .lead + .sublead { margin-top: 0 !important; }
+    .lead + .sublead { margin-top: var(--entry-gap); }
+
+    .section-start { margin-top: var(--section-gap); }
+
     figure { max-width: 800px; margin: 0; padding: 0; }
     figure img { display: block; max-width: 100%; height: auto; margin: 0; }
   </style>
@@ -40,7 +45,7 @@ This is where the Messidor Fund enters.
 One unified, singular attempt -- through commerce culture, and content -- at capturing mindshare amongst the emerging pools of Elite Human Capital.
 </pre>
 
-<p class="lead">Entry #2</p>
+<p class="lead section-start">Entry #2</p>
 <p class="sublead">What Podcasts of the Future Look Like:</p>
 <figure>
   <img src="TheFuture.jpg" alt="The Future">

@@ -72,4 +72,62 @@
     function hide(){
       if(done) return; done = true;
       s.classList.add('hide');
-      document.documentEleme
+      document.documentElement.classList.remove('x-splash-active');
+      s.addEventListener('transitionend', ()=>s.remove(), {once:true});
+    }
+
+    const minMs = 900, maxMs = 2000;
+    let minElapsed = false, fontsReady = false;
+
+    setTimeout(()=>{ minElapsed = true; if(fontsReady) hide(); }, minMs);
+    setTimeout(hide, maxMs);
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(()=>{ fontsReady = true; if(minElapsed) hide(); });
+    } else {
+      window.addEventListener('load', ()=>{ fontsReady = true; if(minElapsed) hide(); }, {once:true});
+    }
+  })();
+  </script>
+
+  <main>
+    <img id="hero" src="TheHarvesters.jpg" alt="The Harvesters" />
+    <h1>Messidor</h1>
+    <nav><a href="mailto:eric_li1@college.harvard.edu">Contact</a></nav>
+    <hr class="divider" />
+  </main>
+
+  <footer id="tagline">"Cultivating attention."</footer>
+
+  <script>
+    const icon = document.createElement('link');
+    icon.rel = 'icon';
+    icon.type = 'image/png';
+    icon.sizes = '32x32';
+    document.head.appendChild(icon);
+
+    const src = 'TheHarvesters.jpg';
+    const cvs = document.createElement('canvas'); cvs.width = cvs.height = 32;
+    const ctx = cvs.getContext('2d');
+    const img = new Image(); img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      const w = img.naturalWidth || img.width, h = img.naturalHeight || img.height;
+      const scale = Math.max(32 / w, 32 / h);
+      const dw = w * scale, dh = h * scale;
+      const dx = (32 - dw) / 2, dy = (32 - dh) / 2;
+      ctx.clearRect(0,0,32,32); ctx.drawImage(img, dx, dy, dw, dh);
+      icon.href = cvs.toDataURL('image/png');
+
+      const icon16 = document.createElement('link');
+      icon16.rel = 'icon';
+      icon16.type = 'image/png';
+      icon16.sizes = '16x16';
+      const c16 = document.createElement('canvas'); c16.width = c16.height = 16;
+      const x16 = c16.getContext('2d'); x16.drawImage(cvs, 0, 0, 16, 16);
+      icon16.href = c16.toDataURL('image/png');
+      document.head.appendChild(icon16);
+    };
+    img.src = src;
+  </script>
+</body>
+</html>

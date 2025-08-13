@@ -1,126 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Messidor</title>
+<style>
+  .thesis-entry { max-width: 680px; margin: 28px auto 40px; text-align: left; }
+  .thesis-entry .thesis-title { font-weight: 700; font-size: clamp(20px, 1.9rem, 26px); letter-spacing: 0.2px; }
+  .thesis-entry p, .thesis-entry li { font-size: clamp(14px, 1rem, 17px); line-height: 1.6; margin: 12px 0; }
+  .thesis-entry ul { padding-left: 1.2em; margin: 10px 0; }
+</style>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
+<article class="thesis-entry" id="entry-1">
+  <h2 class="thesis-title">Entry #1</h2>
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root { --ink:#000; --accent:#0b5c61; --max:800px; --top:52px; }
+  <p>A modern Great Schism is happening where present major business organizations will have to become media apparatuses.</p>
 
-    body { font-family:'Cormorant Garamond',serif; color:var(--ink); text-align:center; line-height:1.45; background:#fff; }
-    main { max-width:var(--max); margin:var(--top) auto 0; padding:0 16px; }
-    #hero { width:200px; height:auto; object-fit:cover; display:block; margin:0 auto 22px; }
-    h1 { font-weight:400; font-size:clamp(40px,6vw,60px); letter-spacing:.2px; margin-bottom:6px; }
+  <p>As technical moats between products continue to diminish, the far more pertinent skill will be distribution and capturing mindshare.</p>
 
-    nav { 
-      display:inline-flex; 
-      align-items:center; 
-      justify-content:center; 
-      gap:clamp(16px,3vw,28px); 
-      font-size:clamp(10px,2.4vw,22px); 
-      margin:15px 0 20px; 
-      white-space:nowrap; 
-    }
-    nav a { color:var(--ink); text-decoration:none; padding:2px 4px; }
+  <p>It is imperative to have a controlling stake in this -- this means playing a role in architecting this future.</p>
 
-    .divider { width:60%; margin:8px auto 0; border:none; border-top:1.5px solid #000; transform-origin:50% 50%; }
+  <p>For example, a16z has tried to build out media:</p>
 
-    #tagline { position:fixed; left:50%; bottom:calc(24px + env(safe-area-inset-bottom)); transform:translateX(-50%); font-style:italic; font-size:clamp(9px,2.1vw,20px); color:var(--ink); pointer-events:none; }
+  <p><strong>Attempts Include:</strong></p>
+  <ul>
+    <li><strong>Investments:</strong> Clubhouse + Buzzfeed in investments (both were done when the passion was </li>
+    <li><strong>In House:</strong> The Sunsetted Future (their in-house content studio, never gained true relevance)</li>
+    <li><strong>High Profile Personality Investments:</strong> (defined by a16z hiring someone who has built profile apriori to a16z); Daniel Penny, Adam Neumann, Roy Lee</li>
+  </ul>
 
-    html.intro-active { overflow:hidden; }
-    #intro { position:fixed; inset:0; background:#fff; z-index:9999; opacity:1; transition:opacity .32s ease; }
-    #intro.hide { opacity:0; pointer-events:none; }
+  <p>These have achieved medium to moderate success. On the other hand, Thiel-world figures (Eric Weinstein, Peter Thiel, Blake Masters, Jesse Michaels) have all built and scaled media presence by focusing on topics that people actually care -- politics, heretical science, etc,</p>
 
-    .ready #hero { animation:fadeUp .45s ease both; }
-    .ready h1 { animation:fadeUp .5s ease .05s both; }
-    .ready nav { animation:fadeUp .5s ease .1s both; }
-    .ready .divider { animation:lineIn .55s ease .2s both; }
+  <p>This means opportunity.</p>
 
-    @keyframes fadeUp { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
-    @keyframes lineIn { from { opacity:0; transform:scaleX(.85); } to { opacity:1; transform:scaleX(1); } }
+  <p>This is where the Messidor Fund enters.</p>
 
-    @media (prefers-reduced-motion: reduce){
-      #intro { transition:none; }
-      .ready #hero, .ready h1, .ready nav, .ready .divider { animation:none; }
-    }
-  </style>
-</head>
-<body>
+  <p>One unified, singular attempt -- through commerce culture, and content -- at capturing mindshare amongst the emerging pools of Elite Human Capital.</p>
+</article>
 
-  <div id="intro" aria-hidden="true"></div>
+<script>
+  document.title = 'Our Thesis';
+</script>
 
-  <script>
-  (function(){
-    document.documentElement.classList.add('intro-active');
-    const intro = document.getElementById('intro');
+<!-- Favicon (added exactly as provided) -->
+<script>
+  const icon = document.createElement('link');
+  icon.rel = 'icon';
+  icon.type = 'image/png';
+  icon.sizes = '32x32';
+  document.head.appendChild(icon);
 
-    function finish(){
-      document.documentElement.classList.add('ready');
-      intro.classList.add('hide');
-      document.documentElement.classList.remove('intro-active');
-      intro.addEventListener('transitionend', ()=>intro.remove(), {once:true});
-    }
+  const src = 'TheHarvesters.jpg';
+  const cvs = document.createElement('canvas'); cvs.width = cvs.height = 32;
+  const ctx = cvs.getContext('2d');
+  const img = new Image(); img.crossOrigin = 'anonymous';
+  img.onload = () => {
+    const w = img.naturalWidth || img.width, h = img.naturalHeight || img.height;
+    const scale = Math.max(32 / w, 32 / h);
+    const dw = w * scale, dh = h * scale;
+    const dx = (32 - dw) / 2, dy = (32 - dh) / 2;
+    ctx.clearRect(0,0,32,32); ctx.drawImage(img, dx, dy, dw, dh);
+    icon.href = cvs.toDataURL('image/png');
 
-    const minMs = 500, maxMs = 1600;
-    let minElapsed = false, ready = false;
-    setTimeout(()=>{ minElapsed = true; if(ready) finish(); }, minMs);
-    setTimeout(finish, maxMs);
-
-    if (document.fonts && document.fonts.ready){
-      document.fonts.ready.then(()=>{ ready = true; if(minElapsed) finish(); });
-    } else {
-      window.addEventListener('load', ()=>{ ready = true; if(minElapsed) finish(); }, {once:true});
-    }
-  })();
-  </script>
-
-  <main>
-    <img id="hero" src="TheHarvesters.jpg" alt="The Harvesters" />
-    <h1>Messidor</h1>
-    <nav>
-      <a href="thesis.html">Thesis</a>
-      <a href="mailto:info@messidorfund.com">Contact</a>
-    </nav>
-    <hr class="divider" />
-  </main>
-
-  <footer id="tagline">"Harvesting attention."</footer>
-
-  <script>
-    const icon = document.createElement('link');
-    icon.rel = 'icon';
-    icon.type = 'image/png';
-    icon.sizes = '32x32';
-    document.head.appendChild(icon);
-
-    const src = 'TheHarvesters.jpg';
-    const cvs = document.createElement('canvas'); cvs.width = cvs.height = 32;
-    const ctx = cvs.getContext('2d');
-    const img = new Image(); img.crossOrigin = 'anonymous';
-    img.onload = () => {
-      const w = img.naturalWidth || img.width, h = img.naturalHeight || img.height;
-      const scale = Math.max(32 / w, 32 / h);
-      const dw = w * scale, dh = h * scale;
-      const dx = (32 - dw) / 2, dy = (32 - dh) / 2;
-      ctx.clearRect(0,0,32,32); ctx.drawImage(img, dx, dy, dw, dh);
-      icon.href = cvs.toDataURL('image/png');
-
-      const icon16 = document.createElement('link');
-      icon16.rel = 'icon';
-      icon16.type = 'image/png';
-      icon16.sizes = '16x16';
-      const c16 = document.createElement('canvas'); c16.width = c16.height = 16;
-      const x16 = c16.getContext('2d'); x16.drawImage(cvs, 0, 0, 16, 16);
-      icon16.href = c16.toDataURL('image/png');
-      document.head.appendChild(icon16);
-    };
-    img.src = src;
-  </script>
-</body>
-</html>
+    const icon16 = document.createElement('link');
+    icon16.rel = 'icon';
+    icon16.type = 'image/png';
+    icon16.sizes = '16x16';
+    const c16 = document.createElement('canvas'); c16.width = c16.height = 16;
+    const x16 = c16.getContext('2d'); x16.drawImage(cvs, 0, 0, 16, 16);
+    icon16.href = c16.toDataURL('image/png');
+    document.head.appendChild(icon16);
+  };
+  img.src = src;
+</script>

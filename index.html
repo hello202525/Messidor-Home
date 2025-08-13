@@ -11,13 +11,7 @@
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --ink: #000;
-      --accent: #0b5c61;
-      --max: 800px;
-      --top: 52px;
-    }
+    :root { --ink:#000; --accent:#0b5c61; --max:800px; --top:52px; }
 
     body {
       font-family: 'Cormorant Garamond', serif;
@@ -26,78 +20,41 @@
       line-height: 1.45;
       background: #fff;
     }
+    main { max-width: var(--max); margin: var(--top) auto 0; padding: 0 16px; }
+    #hero { width:200px; height:auto; object-fit:cover; display:block; margin:0 auto 22px; }
+    h1 { font-weight:400; font-size:clamp(40px,6vw,60px); letter-spacing:.2px; margin-bottom:6px; }
+    nav { font-size:clamp(10px,2.4vw,22px); margin:15px 0 20px; }
+    nav a { color:var(--ink); text-decoration:none; padding:0 8px; }
+    .divider { width:60%; margin:8px auto 0; border:none; border-top:1.5px solid #000; }
+    #tagline { position:fixed; left:50%; bottom:calc(24px + env(safe-area-inset-bottom)); transform:translateX(-50%); font-style:italic; font-size:clamp(9px,2.1vw,20px); color:var(--ink); pointer-events:none; }
 
-    main {
-      max-width: var(--max);
-      margin: var(--top) auto 0;
-      padding: 0 16px;
+    html.x-splash-active { overflow:hidden; }
+    #x-splash {
+      position:fixed; inset:0; z-index:9999; background:#fff;
+      display:grid; place-items:center; opacity:1; transition:opacity .28s ease;
     }
-
-    #hero {
-      width: 200px;
-      height: auto;
-      object-fit: cover;
-      display: block;
-      margin: 0 auto 22px;
+    #x-splash.hide { opacity:0; pointer-events:none; }
+    #x-splash .glyph {
+      font-family:'Cormorant Garamond', serif;
+      font-weight:300;
+      font-size:clamp(44px,7.5vmin,110px);
+      line-height:1;
+      color:var(--ink);
+      letter-spacing:0;
+      opacity:0;
+      transform:scale(.985);
+      animation:glyphIn 900ms ease forwards;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
     }
-
-    h1 {
-      font-weight: 400;
-      font-size: clamp(40px, 6vw, 60px);
-      letter-spacing: 0.2px;
-      margin-bottom: 6px;
+    @keyframes glyphIn {
+      0%   { opacity:0;   transform:scale(.98); }
+      60%  { opacity:.18; transform:scale(1); }
+      100% { opacity:.14; transform:scale(1); }
     }
-
-    nav {
-      font-size: clamp(10px, 2.4vw, 22px);
-      margin-top: 15px;
-      margin-bottom: 20px;
-    }
-
-    nav a { color: var(--ink); text-decoration: none; padding: 0 8px; }
-
-    .divider {
-      width: 60%;
-      margin: 8px auto 0;
-      border: none;
-      border-top: 1.5px solid #000;
-    }
-
-    #tagline {
-      position: fixed;
-      left: 50%;
-      bottom: calc(24px + env(safe-area-inset-bottom));
-      transform: translateX(-50%);
-      font-style: italic;
-      font-size: clamp(9px, 2.1vw, 20px);
-      color: var(--ink);
-      pointer-events: none;
-    }
-
-    html.x-prelude-active { overflow: hidden; }
-
-    #x-prelude{
-      position: fixed; inset: 0; z-index: 9999;
-      background: #fff;
-      display: grid; place-items: center;
-      opacity: 1; transition: opacity .24s ease;
-    }
-    #x-prelude.hide{ opacity: 0; pointer-events: none; }
-
-    #x-prelude .line{
-      position: absolute;
-      height: var(--thick, 1.5px);
-      width: var(--len, 240px);
-      background: var(--ink);
-      opacity: .12;                           
-      transform-origin: 50% 50%;
-      will-change: transform;
-      filter: blur(.15px);                   
-    }
-
     @media (prefers-reduced-motion: reduce){
-      #x-prelude{ transition: none; }
-      #x-prelude .line{ transition: none !important; filter:none; }
+      #x-splash { transition:none; }
+      #x-splash .glyph { animation:none; opacity:.14; transform:none; }
     }
   </style>
 </head>
@@ -105,94 +62,14 @@
 
   <script>
   (function(){
-    document.documentElement.classList.add('x-prelude-active');
+    document.documentElement.classList.add('x-splash-active');
+    const s = document.createElement('div');
+    s.id = 'x-splash';
+    s.innerHTML = '<div class="glyph" aria-hidden="true">X</div>';
+    document.body.prepend(s);
 
-    const prelude = document.createElement('div');
-    prelude.id = 'x-prelude';
-    const a = document.createElement('div'); a.className = 'line';
-    const b = document.createElement('div'); b.className = 'line';
-    prelude.append(a,b);
-    document.body.prepend(prelude);
-
-    function settle(){
-      const hr = document.querySelector('.divider');
-      if(!hr){ return finish(); }
-
-      const r = hr.getBoundingClientRect();
-      const len   = Math.round(r.width);
-      const thick = parseFloat(getComputedStyle(hr).borderTopWidth) || 1.5;
-
-      [a,b].forEach(el=>{
-        el.style.width  = len + 'px';
-        el.style.height = thick + 'px';
-        el.style.transition = 'transform 420ms ease';
-      });
-
-      const cx = innerWidth/2, cy = innerHeight/2;            
-      const hx = r.left + r.width/2, hy = r.top + r.height/2;  
-
-      a.style.transform = `translate(${cx}px,${cy}px) translate(-50%,-50%) rotate(45deg) scaleX(.9)`;
-      b.style.transform = `translate(${cx}px,${cy}px) translate(-50%,-50%) rotate(-45deg) scaleX(.9)`;
-
-      requestAnimationFrame(()=>{
-        const to = `translate(${hx}px,${hy}px) translate(-50%,-50%) rotate(0) scaleX(1)`;
-        a.style.transform = to;
-        b.style.transform = to;
-      });
-
-      setTimeout(finish, 460);
-    }
-
-    function finish(){
-      prelude.classList.add('hide');
-      document.documentElement.classList.remove('x-prelude-active');
-      prelude.addEventListener('transitionend', ()=>prelude.remove(), {once:true});
-    }
-
-    const t = setTimeout(settle, 500);
-    if (document.fonts && document.fonts.ready){
-      document.fonts.ready.then(()=>{ clearTimeout(t); settle(); });
-    } else {
-      addEventListener('load', ()=>{ clearTimeout(t); settle(); }, {once:true});
-    }
-  })();
-  </script>
-
-  <main>
-    <img id="hero" src="TheHarvesters.jpg" alt="The Harvesters" />
-    <h1>Messidor</h1>
-    <nav><a href="mailto:eric_li1@college.harvard.edu">Contact</a></nav>
-    <hr class="divider" />
-  </main>
-
-  <footer id="tagline">"Cultivating attention."</footer>
-
-  <script>
-    const icon = document.createElement('link');
-    icon.rel   = 'icon';
-    icon.type  = 'image/png';
-    icon.sizes = '32x32';
-    document.head.appendChild(icon);
-
-    const src = 'TheHarvesters.jpg';
-    const cvs = document.createElement('canvas'); cvs.width = cvs.height = 32;
-    const ctx = cvs.getContext('2d');
-    const img = new Image(); img.crossOrigin = 'anonymous';
-    img.onload = () => {
-      const w = img.naturalWidth || img.width, h = img.naturalHeight || img.height;
-      const scale = Math.max(32 / w, 32 / h);
-      const dw = w * scale, dh = h * scale;
-      const dx = (32 - dw) / 2, dy = (32 - dh) / 2;
-      ctx.clearRect(0, 0, 32, 32); ctx.drawImage(img, dx, dy, dw, dh);
-      icon.href = cvs.toDataURL('image/png');
-
-      const icon16 = document.createElement('link');
-      icon16.rel = 'icon'; icon16.type = 'image/png'; icon16.sizes = '16x16';
-      const c16 = document.createElement('canvas'); c16.width = c16.height = 16;
-      const x16 = c16.getContext('2d'); x16.drawImage(cvs, 0, 0, 16, 16);
-      icon16.href = c16.toDataURL('image/png'); document.head.appendChild(icon16);
-    };
-    img.src = src;
-  </script>
-</body>
-</html>
+    let done = false;
+    function hide(){
+      if(done) return; done = true;
+      s.classList.add('hide');
+      document.documentEleme

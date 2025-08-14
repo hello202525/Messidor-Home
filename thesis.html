@@ -4,9 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Our Thesis</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet" />
-
   <script>
     document.documentElement.classList.add('has-js','is-loading');
   </script>
@@ -15,26 +13,19 @@
     :root { --entry-gap: 6px; --section-gap: 28px; }
     body { font-family: "Times New Roman", Times, serif; color: #000; background: #fff; font-size: 20px; line-height: 1.32; }
     main { max-width: 800px; padding: 0 16px; margin: 40px auto; }
-
     pre { white-space: pre-wrap; font: inherit; line-height: 1.28; margin: 0; }
-
     .lead { font-weight: 700; font-size: 1.6em; line-height: 1.14; display: block; margin: 0 0 var(--entry-gap); }
     .sublead { display: block; font-style: normal; text-align: left; line-height: 1.28; margin: 0 0 12px; }
-
     .lead + .sublead { margin-top: calc(var(--entry-gap) + 1.28em); }
     .section-start { margin-top: calc(var(--section-gap) + 1em); }
-
     figure { max-width: 800px; margin: 0; padding: 0; }
     figure img { display: block; width: 75%; height: auto; margin: 0; }
-
-    /* (2) 10% smaller than 56.25% -> 50.625% */
+    figure img[src="TheFuture.jpg"] { width: 71.25%; }
     figure img[src="TheNextPinkDrink.jpg"] { width: 50.625%; }
-
-    /* (1) Move "Messidor" left a bit using your section gap */
     .brand-messidor {
       position: fixed;
-      top: 40px;
-      right: var(--section-gap); /* was 16px */
+      top: 32px;
+      right: var(--section-gap);
       font-family: "Cinzel", serif;
       font-weight: 700;
       font-size: 1em;
@@ -43,10 +34,7 @@
       color: #000;
     }
     .brand-messidor:hover { text-decoration: underline; }
-
-    /* (3) Standard break between a figure and the following sublead */
     figure + .sublead { margin-top: calc(var(--entry-gap) + 1.28em); }
-
     .has-js body::before {
       content: "";
       position: fixed;
@@ -59,7 +47,6 @@
     }
     .has-js.is-loading body::before { opacity: 1; }
     .has-js.is-ready body::before  { opacity: 0; }
-
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(8px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -67,7 +54,6 @@
     .has-js.is-ready main {
       animation: fadeUp .6s cubic-bezier(.2,.6,.2,1) .06s both;
     }
-
     @media (prefers-reduced-motion: reduce) {
       .has-js body::before { transition: none; }
       .has-js.is-ready main { animation: none; }

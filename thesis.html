@@ -4,27 +4,53 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Our Thesis</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet" />
   <script>
     document.documentElement.classList.add('has-js','is-loading');
   </script>
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root { --entry-gap: 6px; --section-gap: 28px; }
-    body { font-family: "Times New Roman", Times, serif; color: #000; background: #fff; font-size: 20px; line-height: 1.32; }
+
+    body {
+      font-family: "Times New Roman", Times, serif;
+      color: #000;
+      background: #fff;
+      font-size: 20px;
+      line-height: 1.32;
+    }
+
     main { max-width: 800px; padding: 0 16px; margin: 40px auto; }
+
     pre { white-space: pre-wrap; font: inherit; line-height: 1.28; margin: 0; }
+
     .lead { font-weight: 700; font-size: 1.6em; line-height: 1.14; display: block; margin: 0 0 var(--entry-gap); }
-    .sublead { display: block; font-style: normal; text-align: left; line-height: 1.28; margin: 0 0 12px; }
+
+    .sublead {
+      display: block;
+      font-style: normal;
+      text-align: left;
+      line-height: 1.28;
+      margin: 0 0 12px;
+    }
+
     .lead + .sublead { margin-top: calc(var(--entry-gap) + 1.28em); }
     .section-start { margin-top: calc(var(--section-gap) + 1em); }
+
     figure { max-width: 800px; margin: 0; padding: 0; }
     figure img { display: block; width: 75%; height: auto; margin: 0; }
-    figure img[src="TheFuture.jpg"] { width: 71.25%; }
+
+    /* 7% smaller than 75% -> 69.75% */
+    figure img[src="TheFuture.jpg"] { width: 69.75%; }
+
+    /* 10% smaller than 56.25% -> 50.625% */
     figure img[src="TheNextPinkDrink.jpg"] { width: 50.625%; }
+
     .brand-messidor {
       position: fixed;
-      top: 28px;
+      top: 28px; /* moved up slightly */
       right: var(--section-gap);
       font-family: "Cinzel", serif;
       font-weight: 700;
@@ -34,7 +60,9 @@
       color: #000;
     }
     .brand-messidor:hover { text-decoration: underline; }
+
     figure + .sublead { margin-top: calc(var(--entry-gap) + 1.28em); }
+
     .has-js body::before {
       content: "";
       position: fixed;
@@ -46,14 +74,14 @@
       z-index: 9999;
     }
     .has-js.is-loading body::before { opacity: 1; }
-    .has-js.is-ready body::before  { opacity: 0; }
+    .has-js.is-ready body::before { opacity: 0; }
+
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(8px); }
-      to   { opacity: 1; transform: translateY(0); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    .has-js.is-ready main {
-      animation: fadeUp .6s cubic-bezier(.2,.6,.2,1) .06s both;
-    }
+    .has-js.is-ready main { animation: fadeUp .6s cubic-bezier(.2,.6,.2,1) .06s both; }
+
     @media (prefers-reduced-motion: reduce) {
       .has-js body::before { transition: none; }
       .has-js.is-ready main { animation: none; }
@@ -62,6 +90,7 @@
 </head>
 <body>
   <a class="brand-messidor" href="https://messidorfund.com">Messidor</a>
+
   <main>
 <pre><strong class="lead">Entry #1</strong>
 A modern Great Schism is happening where major business organizations will need to become media apparatuses.
@@ -73,7 +102,7 @@ It is imperative to have a controlling stake in this -- it means playing a role 
 For example, a16z has tried to build out media:
 -> Investments: Clubhouse + Buzzfeed (both were invested in at hype-cycle peak) 
 -> In House: Future (their sunsetted in-house content studio, never gained true relevance)
--> High Profile Personality Investments: (defined by a16z associating with someone who has built profile apriori to a16z); Daniel Penny, Adam Neumann, Roy Lee  
+-> High Profile Personality Investments: (defined by a16z associating with someone who has built profile apriori to a16z); Daniel Penny, Adam Neumann, Roy Lee
 
 These have achieved medium to moderate success. On the other hand, Thiel-adjacent figures (Thiel, Eric Weinstein, Blake Masters, Mike Solana, Jesse Michels) have all built and scaled media presence by focusing on topics that people actually care about -- politics, heretical science, etc.
 
@@ -81,19 +110,19 @@ This means opportunity.
 
 This is where the Messidor Fund enters. 
 
-One unified, singular attempt -- through commerce, culture, and content -- at capturing mindshare amongst the emerging pools of Elite Human Capital.
+One unified, singular attempt -- through commerce, culture, and content -- at capturing mindshare amongst the emerging pools of Elite Human Capital. 
 </pre>
 
-<p class="lead section-start">Entry #2</p>
-<p class="sublead">What Podcasts of the Future Look Like:</p>
-<figure>
-  <img src="TheFuture.jpg" alt="The Future">
-</figure>
+    <p class="lead section-start">Entry #2</p>
+    <p class="sublead">What Podcasts of the Future Look Like:</p>
+    <figure>
+      <img src="TheFuture.jpg" alt="The Future">
+    </figure>
 
-<p class="sublead">The Next Pink Drink:</p>
-<figure>
-  <img src="TheNextPinkDrink.jpg" alt="The Next Pink Drink">
-</figure>
+    <p class="sublead">The Next Pink Drink:</p>
+    <figure>
+      <img src="TheNextPinkDrink.jpg" alt="The Next Pink Drink">
+    </figure>
   </main>
 
   <script>

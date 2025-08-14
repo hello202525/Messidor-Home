@@ -27,12 +27,14 @@
     figure { max-width: 800px; margin: 0; padding: 0; }
     figure img { display: block; width: 75%; height: auto; margin: 0; }
 
-    figure img[src="TheNextPinkDrink.jpg"] { width: 56.25%; }
+    /* (2) 10% smaller than 56.25% -> 50.625% */
+    figure img[src="TheNextPinkDrink.jpg"] { width: 50.625%; }
 
+    /* (1) Move "Messidor" left a bit using your section gap */
     .brand-messidor {
       position: fixed;
       top: 40px;
-      right: 16px;
+      right: var(--section-gap); /* was 16px */
       font-family: "Cinzel", serif;
       font-weight: 700;
       font-size: 1em;
@@ -41,6 +43,9 @@
       color: #000;
     }
     .brand-messidor:hover { text-decoration: underline; }
+
+    /* (3) Standard break between a figure and the following sublead */
+    figure + .sublead { margin-top: calc(var(--entry-gap) + 1.28em); }
 
     .has-js body::before {
       content: "";

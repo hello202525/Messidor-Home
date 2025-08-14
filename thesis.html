@@ -7,6 +7,9 @@
   <script>
     document.documentElement.classList.add('has-js','is-loading');
   </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root { --entry-gap: 6px; --section-gap: 28px; }
@@ -18,13 +21,26 @@
     .lead { font-weight: 700; font-size: 1.6em; line-height: 1.14; display: block; margin: 0 0 var(--entry-gap); }
     .sublead { display: block; font-style: normal; text-align: left; line-height: 1.28; margin: 0 0 12px; }
 
-    .lead + .sublead {
-      margin-top: calc(var(--entry-gap) + 1.28em);
-    }
+    .lead + .sublead { margin-top: calc(var(--entry-gap) + 1.28em); }
     .section-start { margin-top: calc(var(--section-gap) + 1em); }
 
     figure { max-width: 800px; margin: 0; padding: 0; }
     figure img { display: block; max-width: 100%; height: auto; margin: 0; }
+
+    figure + .sublead { margin-top: calc(var(--entry-gap) + 1.28em); }
+
+    .brand-messidor {
+      position: fixed;
+      top: 40px;
+      right: 16px;
+      font-family: "Cormorant Garamond", Garamond, "Times New Roman", Times, serif;
+      font-weight: 400;
+      font-size: 1em;
+      line-height: 1.32;
+      text-decoration: none;
+      color: #000;
+    }
+    .brand-messidor:hover { text-decoration: underline; }
 
     .has-js body::before {
       content: "";
@@ -54,6 +70,7 @@
   </style>
 </head>
 <body>
+  <a class="brand-messidor" href="https://messidorfund.com">Messidor</a>
   <main>
 <pre><strong class="lead">Entry #1</strong>
 A modern Great Schism is happening where major business organizations will need to become media apparatuses.
@@ -80,6 +97,11 @@ One unified, singular attempt -- through commerce, culture, and content -- at ca
 <p class="sublead">What Podcasts of the Future Look Like:</p>
 <figure>
   <img src="TheFuture.jpg" alt="The Future">
+</figure>
+
+<p class="sublead">The Next Pink Drink</p>
+<figure>
+  <img src="TheNextPinkDrink.jpg" alt="The Next Pink Drink">
 </figure>
   </main>
 

@@ -22,7 +22,25 @@
       line-height: 1.32;
     }
 
-    main { max-width: 800px; padding: 0 16px; margin: 56px auto; }
+    /* New scrolling header so "Messidor" is NOT fixed */
+    header.masthead {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding: 20px var(--section-gap) 0;
+    }
+
+    .brand-messidor {
+      font-family: "Cinzel", serif;
+      font-weight: 700;
+      font-size: 1em;
+      line-height: 1.32;
+      text-decoration: none;
+      color: #000;
+    }
+    .brand-messidor:hover { text-decoration: underline; }
+
+    main { max-width: 800px; padding: 0 16px; margin: 28px auto 56px; }
 
     pre { white-space: pre-wrap; font: inherit; line-height: 1.28; margin: 0; }
 
@@ -38,22 +56,6 @@
     figure img[src="TheFuture.jpg"] { width: 69.75%; }
     figure img[src="TheNextPinkDrink.jpg"] { width: 50.625%; }
     figure img[src="EliteHumanCapital.jpg"] { width: 54.75%; margin-left: -1%; }
-
-    /* Pinned brand link */
-    .brand-messidor {
-      position: fixed;
-      top: 20px;
-      right: var(--section-gap);
-      z-index: 10001;           /* above the fade overlay (9999) */
-      transform: translateZ(0); /* prevent iOS jitter */
-      font-family: "Cinzel", serif;
-      font-weight: 700;
-      font-size: 1em;
-      line-height: 1.32;
-      text-decoration: none;
-      color: #000;
-    }
-    .brand-messidor:hover { text-decoration: underline; }
 
     figure + .sublead { margin-top: calc(var(--entry-gap) + 1.28em); }
 
@@ -83,7 +85,9 @@
   </style>
 </head>
 <body>
-  <a class="brand-messidor" href="https://messidorfund.com">Messidor</a>
+  <header class="masthead">
+    <a class="brand-messidor" href="https://messidorfund.com">Messidor</a>
+  </header>
 
   <main>
 <pre><strong class="lead">Entry #1</strong>

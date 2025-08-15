@@ -22,7 +22,7 @@
       line-height: 1.32;
     }
 
-    /* New scrolling header so "Messidor" is NOT fixed */
+    /* Scrolling header so "Messidor" scrolls away naturally */
     header.masthead {
       width: 100%;
       display: flex;
@@ -55,7 +55,8 @@
 
     figure img[src="TheFuture.jpg"] { width: 69.75%; }
     figure img[src="TheNextPinkDrink.jpg"] { width: 50.625%; }
-    figure img[src="EliteHumanCapital.jpg"] { width: 54.75%; margin-left: -1%; }
+    /* +6% from 54.75% → 58.035% */
+    figure img[src="EliteHumanCapital.jpg"] { width: 58.035%; margin-left: -1%; }
 
     figure + .sublead { margin-top: calc(var(--entry-gap) + 1.28em); }
 

@@ -39,10 +39,13 @@
     figure img[src="TheNextPinkDrink.jpg"] { width: 50.625%; }
     figure img[src="EliteHumanCapital.jpg"] { width: 54.75%; margin-left: -1%; }
 
+    /* Pinned brand link */
     .brand-messidor {
       position: fixed;
       top: 20px;
       right: var(--section-gap);
+      z-index: 10001;           /* above the fade overlay (9999) */
+      transform: translateZ(0); /* prevent iOS jitter */
       font-family: "Cinzel", serif;
       font-weight: 700;
       font-size: 1em;
